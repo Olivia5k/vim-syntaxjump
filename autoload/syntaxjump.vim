@@ -53,10 +53,9 @@ endfunction
 
 function! syntaxjump#Jump(...)
   let pos = getpos('.')
-  let start = pos[1]
   let lines = readfile(expand('%'))
   let linelen = len(lines)
-  let range = a:0 ? reverse(range(0, start - 1)) : range(start + 1, linelen)
+  let range = a:0 ? reverse(range(0, pos[1] - 1)) : range(pos[1] + 1, linelen)
 
   for lnum in range
     let col = match(lines[lnum - 1], '\S')
