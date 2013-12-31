@@ -32,16 +32,15 @@ endif
 " Initialization {{{
 
 function! syntaxjump#Init()
+  if syntaxjump#CheckDisabled()
+    return
+  endif
+
   nmap <buffer> <silent> <Plug>SyntaxjumpForward :call syntaxjump#Jump()<cr>
   nmap <buffer> <silent> <Plug>SyntaxjumpBack :call syntaxjump#Jump('b')<cr>
 
   if hasmapto("<Plug>SyntaxjumpForward", 'n') || hasmapto("<Plug>SyntaxjumpForward", 'n')
     " Mappings are already set. Don't do nothing.
-    return
-  endif
-
-  if syntaxjump#CheckDisabled()
-    " This filetype is disabled.
     return
   endif
 
